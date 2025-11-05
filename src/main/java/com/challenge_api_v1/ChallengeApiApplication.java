@@ -1,4 +1,4 @@
-package com.challenge_api_v1.ChallengeApi;
+package com.challenge_api_v1;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
