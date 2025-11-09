@@ -1,4 +1,4 @@
-package com.challenge_api_v1.controller;
+package com.challenge_api_v1.ChallengeApi.controller;
 
 import com.challenge_api_v1.ChallengeApi.dtos.CreateUserDto;
 import com.challenge_api_v1.ChallengeApi.dtos.TokenDto;
@@ -55,7 +55,7 @@ public class AuthController {
 
 
     @PostMapping("/register")
-    public ResponseEntity register(@RequestBody CreateUserDto createUserDto){
+    public ResponseEntity<?> register(@RequestBody CreateUserDto createUserDto){
 
         this.loginService.register(createUserDto);
 

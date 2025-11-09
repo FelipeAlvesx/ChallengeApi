@@ -21,7 +21,7 @@ public class UserChallenge {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "users_id")
+    @JoinColumn(name = "user_id")
     private User users;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -30,6 +30,7 @@ public class UserChallenge {
 
     private boolean completed;
 
-    private LocalDate date;
+    @Column(name = "created_at", updatable = false, insertable = false)
+    private LocalDate createdAt;
 
 }

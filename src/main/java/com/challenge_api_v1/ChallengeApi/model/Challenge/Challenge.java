@@ -15,6 +15,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Challenge {
 
     @Id
@@ -28,8 +29,7 @@ public class Challenge {
     @Enumerated(EnumType.STRING)
     private CategoryEnum category;
 
-    @Enumerated(EnumType.STRING)
-    private DifficultyEnum difficulty;
+    private int xp;
 
     @OneToMany(mappedBy = "challenge")
     private List<UserChallenge> userChallenges = new ArrayList<>();
