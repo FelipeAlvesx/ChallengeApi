@@ -32,7 +32,7 @@ public class User implements UserDetails {
 
     private String password;
 
-    private Integer xp;
+    private int xp;
 
     @OneToMany(mappedBy = "users", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<UserChallenge> challenges = new ArrayList<>();

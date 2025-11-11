@@ -1,10 +1,6 @@
 package com.challenge_api_v1.ChallengeApi.service;
 
-import com.auth0.jwt.JWT;
-import com.auth0.jwt.algorithms.Algorithm;
-import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.challenge_api_v1.ChallengeApi.dtos.ChallengeDto;
-import com.challenge_api_v1.ChallengeApi.model.Challenge.CategoryEnum;
 import com.challenge_api_v1.ChallengeApi.model.Challenge.Challenge;
 import com.challenge_api_v1.ChallengeApi.model.Challenge.ChallengeRepository;
 import com.challenge_api_v1.ChallengeApi.model.User.User;
@@ -15,10 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 
 
 @Service
@@ -48,9 +41,10 @@ public class ChallengeService {
         if(todayChallenge.isPresent()){
 
             if(todayChallenge.get().isCompleted()){
-                // Gera uma nova challenge se a de hoje já foi completada
-                var randomChallenge = createRandomChallenge(user);
-                return new ChallengeDto(randomChallenge);
+                // Se a challenge de hoje já foi completada, lança uma exceção
+                if(todayChallenge.get().getCreatedAt().isEqual(today)){
+                    throw new RuntimeException("Challenge de hoje já foi completada");
+                }
             }
 
             // Retorna a mesma challenge se ainda for válida

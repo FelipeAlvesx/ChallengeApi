@@ -24,5 +24,12 @@ public class ChallengeController {
         return ResponseEntity.ok(challenge);
     }
 
+    @GetMapping("/complete")
+    public ResponseEntity<?> completeChallenge(@AuthenticationPrincipal User userDetails){
+        Long userId = userDetails.getId();
+        challengeService.completeChallenge(userId);
+        return ResponseEntity.noContent().build();
+    }
+
 
 }
