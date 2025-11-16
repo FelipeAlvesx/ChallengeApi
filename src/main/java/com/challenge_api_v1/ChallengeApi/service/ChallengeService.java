@@ -67,12 +67,18 @@ public class ChallengeService {
         Optional<UserChallenge> todayChallenge = userChallengeRepository.findByUserAndDate(user, today);
 
         if (todayChallenge.isPresent()) {
+            if(todayChallenge.get().isCompleted()){
+                throw new RuntimeException("Challenge de hoje já foi completada");
+            }
+
             UserChallenge userChallenge = todayChallenge.get();
             userChallenge.setCompleted(true);
+            userChallenge.getUsers().calculateXp(todayChallenge.get().getChallenge());
             userChallengeRepository.save(userChallenge);
-        } else {
-            throw new RuntimeException("Nenhuma challenge encontrada para hoje");
         }
+
+        throw new RuntimeException("Nenhuma challenge encontrada para hoje");
+
     }
 
 

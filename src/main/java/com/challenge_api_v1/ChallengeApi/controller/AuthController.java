@@ -62,12 +62,6 @@ public class AuthController {
         return ResponseEntity.status(HttpStatus.CREATED).body("CREATED!");
     }
 
-    @GetMapping
-    public ResponseEntity<Page<UserDetailsDto>> getAll(@PageableDefault(sort = {"username"}, size = 10) Pageable pageable){
-        var pageResponse = userRepository.findAll(pageable).map(UserDetailsDto::new);
-
-        return ResponseEntity.ok(pageResponse);
-    }
 
 
 }

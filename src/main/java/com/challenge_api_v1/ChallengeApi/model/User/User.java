@@ -1,6 +1,7 @@
 package com.challenge_api_v1.ChallengeApi.model.User;
 
 import com.challenge_api_v1.ChallengeApi.dtos.CreateUserDto;
+import com.challenge_api_v1.ChallengeApi.model.Challenge.Challenge;
 import com.challenge_api_v1.ChallengeApi.model.UserChallenge.UserChallenge;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -82,4 +83,10 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return UserDetails.super.isEnabled();
     }
+
+
+    public void calculateXp(Challenge challenge){
+        this.xp += challenge.getXp();
+    }
+
 }
