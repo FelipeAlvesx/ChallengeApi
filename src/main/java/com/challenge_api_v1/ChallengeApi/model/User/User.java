@@ -11,8 +11,10 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 @Entity(name = "User")
@@ -33,6 +35,10 @@ public class User implements UserDetails {
 
     private String password;
 
+    @Column(name = "types")
+    @Enumerated(EnumType.STRING)
+    private UserType userType;
+
     private int xp;
 
     @OneToMany(mappedBy = "users", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -47,11 +53,12 @@ public class User implements UserDetails {
         this.username = username;
         this.email = email;
         this.password = password;
+        this.userType = UserType.USER;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+        return Collections.singleton(new SimpleGrantedAuthority("ROLE_" + userType.name()));
     }
 
     @Override
@@ -83,7 +90,6 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return UserDetails.super.isEnabled();
     }
-
 
     public void calculateXp(Challenge challenge){
         this.xp += challenge.getXp();

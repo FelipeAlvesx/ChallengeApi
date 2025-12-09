@@ -1,6 +1,7 @@
 package com.challenge_api_v1.ChallengeApi.service;
 
 import com.challenge_api_v1.ChallengeApi.dtos.ChallengeDto;
+import com.challenge_api_v1.ChallengeApi.dtos.CreateChallengeDto;
 import com.challenge_api_v1.ChallengeApi.model.Challenge.Challenge;
 import com.challenge_api_v1.ChallengeApi.model.Challenge.ChallengeRepository;
 import com.challenge_api_v1.ChallengeApi.model.User.User;
@@ -79,6 +80,12 @@ public class ChallengeService {
 
         throw new RuntimeException("Nenhuma challenge encontrada para hoje");
 
+    }
+
+    public Challenge createChallenge(CreateChallengeDto createChallengeDto){
+        var challenge = new Challenge(createChallengeDto.title(), createChallengeDto.description(), createChallengeDto.category(), createChallengeDto.xp());
+        challengeRepository.save(challenge);
+        return challenge;
     }
 
 

@@ -1,14 +1,14 @@
 package com.challenge_api_v1.ChallengeApi.controller;
 
 import com.challenge_api_v1.ChallengeApi.dtos.ChallengeDto;
+import com.challenge_api_v1.ChallengeApi.dtos.CreateChallengeDto;
+import com.challenge_api_v1.ChallengeApi.model.Challenge.Challenge;
 import com.challenge_api_v1.ChallengeApi.model.User.User;
 import com.challenge_api_v1.ChallengeApi.service.ChallengeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/challenge")
@@ -29,6 +29,12 @@ public class ChallengeController {
         Long userId = userDetails.getId();
         challengeService.completeChallenge(userId);
         return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping("/create")
+    public ResponseEntity<ChallengeDto> createChallenge(@RequestBody CreateChallengeDto createChallengeDto, @AuthenticationPrincipal User user){
+        var challenge = challengeService.createChallenge(createChallengeDto);
+        return ResponseEntity.ok(new ChallengeDto(challenge));
     }
 
 

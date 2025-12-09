@@ -1,5 +1,6 @@
 package com.challenge_api_v1.ChallengeApi.model.Challenge;
 
+import com.challenge_api_v1.ChallengeApi.dtos.CreateChallengeDto;
 import com.challenge_api_v1.ChallengeApi.model.UserChallenge.UserChallenge;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -35,5 +36,10 @@ public class Challenge {
     private List<UserChallenge> userChallenges = new ArrayList<>();
 
 
-
+    public Challenge(String title, String description, CategoryEnum category, int xp) {
+        this.title = title;
+        this.description = description;
+        this.category = category;
+        this.xp = xp;
+    }
 }
