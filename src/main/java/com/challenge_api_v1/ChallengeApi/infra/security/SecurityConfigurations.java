@@ -30,8 +30,10 @@ public class SecurityConfigurations {
         return httpSecurity.csrf(csrf -> csrf.disable())
                 .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests((authorize) -> {
-                    authorize.requestMatchers("/challenge/create").hasRole("ADMIN");
-                    authorize.requestMatchers("/auth/**").permitAll();
+                    authorize.requestMatchers("/challenge/create").hasRole("ADMIN"); // definimos o nivel de acesso da rota /create para apenas ADMIN
+                    authorize.requestMatchers("/auth/getAdmin").hasRole("ADMIN");
+                    authorize.requestMatchers("/auth/login").permitAll();
+                    authorize.requestMatchers("/auth/register").permitAll();
                     authorize.requestMatchers("/h2-console/**").permitAll();
                     authorize.anyRequest().authenticated();
                 })

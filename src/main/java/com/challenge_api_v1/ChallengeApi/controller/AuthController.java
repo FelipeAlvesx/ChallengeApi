@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -55,6 +56,13 @@ public class AuthController {
         return ResponseEntity.status(HttpStatus.CREATED).body("CREATED!");
     }
 
+    @GetMapping("/getAdmin/{id}")
+    public ResponseEntity<Void> getAdmin(@PathVariable Long id){
+        System.out.println(id);
+        this.loginService.getAdmin(id);
+
+        return ResponseEntity.ok().build();
+    }
 
 
 }

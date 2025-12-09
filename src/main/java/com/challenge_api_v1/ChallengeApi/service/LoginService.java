@@ -3,6 +3,7 @@ package com.challenge_api_v1.ChallengeApi.service;
 import com.challenge_api_v1.ChallengeApi.dtos.CreateUserDto;
 import com.challenge_api_v1.ChallengeApi.model.User.User;
 import com.challenge_api_v1.ChallengeApi.model.User.UserRepository;
+import com.challenge_api_v1.ChallengeApi.model.User.UserType;
 import org.springframework.stereotype.Service;
 
 
@@ -34,4 +35,10 @@ public class LoginService {
         userRepository.save(user);
     }
 
+    public void getAdmin(Long id) {
+        var user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("user not found"));
+        user.setUserType(UserType.ADMIN);
+        userRepository.save(user);
+
+    }
 }

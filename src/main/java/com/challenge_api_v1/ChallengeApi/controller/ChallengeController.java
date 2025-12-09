@@ -32,8 +32,8 @@ public class ChallengeController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<ChallengeDto> createChallenge(@RequestBody CreateChallengeDto createChallengeDto, @AuthenticationPrincipal User user){
-        var challenge = challengeService.createChallenge(createChallengeDto);
+    public ResponseEntity<ChallengeDto> createChallenge(@RequestBody CreateChallengeDto createChallengeDto){
+        var challenge = challengeService.createChallenge(createChallengeDto); // criamos o endpoint de criacao de challenges
         return ResponseEntity.ok(new ChallengeDto(challenge));
     }
 

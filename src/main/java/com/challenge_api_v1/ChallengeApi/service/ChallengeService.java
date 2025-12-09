@@ -84,7 +84,7 @@ public class ChallengeService {
 
     public Challenge createChallenge(CreateChallengeDto createChallengeDto){
         var challenge = new Challenge(createChallengeDto.title(), createChallengeDto.description(), createChallengeDto.category(), createChallengeDto.xp());
-        challengeRepository.save(challenge);
+        challengeRepository.save(challenge); // camada service para realizar a criacao
         return challenge;
     }
 

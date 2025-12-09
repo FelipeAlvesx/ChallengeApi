@@ -56,9 +56,15 @@ public class User implements UserDetails {
         this.userType = UserType.USER;
     }
 
+
+    public void getAdmin(){
+        this.userType = UserType.ADMIN;
+    }
+
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singleton(new SimpleGrantedAuthority("ROLE_" + userType.name()));
+        return Collections.singleton(new SimpleGrantedAuthority("ROLE_" + userType.name())); // forma de definir um tipo de usuario, perfil ou role
     }
 
     @Override
