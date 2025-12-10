@@ -11,7 +11,7 @@ Cada dia, o usuário recebe um novo desafio — pode completá-lo, ganhar pontos
 - **Java 17+**
 - **Spring Boot 3**
 - **Spring Web**
-- **Spring Data JPA (PostgreSQL)**
+- **Spring Data JPA (MySQL)**
 - **Spring Security + JWT**
 - **Lombok**
 - **Swagger/OpenAPI** (documentação)
