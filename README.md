@@ -36,6 +36,19 @@ Cada dia, o usuário recebe um novo desafio — pode completá-lo, ganhar pontos
     - Usuário faz login em `POST /auth/login` (ou cadastra em `POST /auth/register`).
     - Servidor retorna um token JWT que deve ser enviado no header `Authorization: Bearer <token>` em requests autenticados.
 
+
+```
+# login -> obter token
+curl -X POST https://api.example.com/auth/login -H "Content-Type: application/json" -d '{"username":"user@example.com","password":"senha"}'
+
+# obter desafio diário
+curl -H "Authorization: Bearer <token>" https://api.example.com/challenge
+
+# marcar desafio como concluído (concede XP)
+curl -X POST -H "Authorization: Bearer <token>" https://api.example.com/challenge/complete
+```
+
+
 - Endpoint principal de desafios:
     - `GET /challenge` \- requer o token JWT no header `Authorization: Bearer <token>`.
     - Ao chamar, o usuário recebe o *desafio diário* associado à sua conta.
@@ -68,15 +81,4 @@ Cada dia, o usuário recebe um novo desafio — pode completá-lo, ganhar pontos
   "xp": 50,
   "category": "Saúde"
 }
-```
-
-```
-# login -> obter token
-curl -X POST https://api.example.com/auth/login -H "Content-Type: application/json" -d '{"email":"user@example.com","password":"senha"}'
-
-# obter desafio diário
-curl -H "Authorization: Bearer <token>" https://api.example.com/challenge
-
-# marcar desafio como concluído (concede XP)
-curl -X POST -H "Authorization: Bearer <token>" https://api.example.com/challenge/complete
 ```
