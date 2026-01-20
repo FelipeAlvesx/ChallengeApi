@@ -70,6 +70,7 @@ Cada dia, o usuário recebe um novo desafio — pode completá-lo, ganhar pontos
 }
 ```
 
+```
 # login -> obter token
 curl -X POST https://api.example.com/auth/login -H "Content-Type: application/json" -d '{"email":"user@example.com","password":"senha"}'
 
@@ -78,3 +79,4 @@ curl -H "Authorization: Bearer <token>" https://api.example.com/challenge
 
 # marcar desafio como concluído (concede XP)
 curl -X POST -H "Authorization: Bearer <token>" https://api.example.com/challenge/complete
+```
